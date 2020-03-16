@@ -9,6 +9,20 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule  } from '@angular/common/http';
 
+import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider } from "angularx-social-login";
+
+let config = new AuthServiceConfig([
+{
+  id : GoogleLoginProvider.PROVIDER_ID,
+  provider: new GoogleLoginProvider("735347369403-hu7c6e1kdbs5ggct9raa7e42oi4oo8vi.apps.googleusercontent.com")
+}
+]
+)
+
+export function provideConfig(){
+  return config;
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,9 +35,13 @@ import { HttpClientModule  } from '@angular/common/http';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SocialLoginModule
   ],
-  providers: [],
+  providers: [{
+    provide: AuthServiceConfig,
+    useFactory: provideConfig
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
