@@ -5,6 +5,8 @@ import { LoginRequest } from 'src/app/models/login.request.model';
 import { JwtResponse } from 'src/app/models/jwt.response';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { RegisterRequest } from 'src/app/models/register.model';
+import { User } from 'src/app/models/user.model';
 
 
 @Injectable({
@@ -20,6 +22,12 @@ export class LoginService {
    login_user(body: LoginRequest){
      return this.http.post<JwtResponse>( this.url+"/login", body )
      .pipe(
+       catchError(this.handlePromise)
+     )
+   }
+
+   register_user(body: RegisterRequest){
+     return this.http.post<User>(this.url+"/register", body).pipe(
        catchError(this.handlePromise)
      )
    }
