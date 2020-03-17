@@ -7,6 +7,7 @@ import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { RegisterRequest } from 'src/app/models/register.model';
 import { User } from 'src/app/models/user.model';
+import { SocialLoginRequest } from 'src/app/models/social.login.request';
 
 
 @Injectable({
@@ -25,6 +26,16 @@ export class LoginService {
        catchError(this.handlePromise)
      )
    }
+
+
+   social_login_user(body:SocialLoginRequest){
+     return this.http.post<JwtResponse>(this.url+"/social", body)
+     .pipe(
+       catchError(this.handlePromise)
+     )
+   }
+
+
 
    register_user(body: RegisterRequest){
      return this.http.post<User>(this.url+"/register", body).pipe(
