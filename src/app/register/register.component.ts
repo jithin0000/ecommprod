@@ -42,11 +42,8 @@ export class RegisterComponent implements OnInit {
   register(){
     if (this.register_form.valid) {
       
-      const body: RegisterRequest = {
-        ...this.register_form.value,google_auth_id: ""
-      }
-
-      this.loginService.register_user(body)
+     
+      this.loginService.register_user(this.register_form.value)
       .subscribe( res => {
         this.router.navigate(['/'])
       },

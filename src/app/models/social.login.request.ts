@@ -1,3 +1,10 @@
+import { FbLoginRequest } from './facebook.login.request';
+
 export interface SocialLoginRequest{
-    googleAuthToken: string
+
+    provider: string,
+    googleAuthToken?: string,
+
+    facebookRequest?:FbLoginRequest
+
 }

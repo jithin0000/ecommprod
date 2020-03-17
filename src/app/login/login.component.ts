@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { LoginService } from '../services/auth/login.service';
-import { AuthService, GoogleLoginProvider } from 'angularx-social-login';
+import { AuthService, GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
 import { RegisterRequest } from '../models/register.model';
 import { v4 as uuid } from 'uuid';
 import { Router } from '@angular/router';
@@ -28,25 +28,44 @@ export class LoginComponent implements OnInit {
     const token = localStorage.getItem('token')
     console.log(token)
 
-    if( token === null ){
-      
+    if (token === null) {
+
       this.authService.authState.subscribe(
         res => {
+          console.log(res)
           if (res !== null) {
-            
-            const body: SocialLoginRequest = { googleAuthToken: res.idToken}
 
-            this.loginService.social_login_user(body)
-            .subscribe( res => {
-              localStorage.setItem('token', res.token)
-              this.router.navigate(['/home'])
-            },
-      
-            error => {
-              const errors = Object.keys(error).map(item => error[item]);
-      
-              this.errorList = errors
-            })
+            if (res.provider === FacebookLoginProvider.PROVIDER_ID) {
+
+              const body: SocialLoginRequest ={
+                provider: FacebookLoginProvider.PROVIDER_ID,
+                facebookRequest:{
+                  facebookAccessToken : res.authToken,
+                  facebookUserId : res.id,
+                  fbEmail: res.email,
+                  fbProfilePicture: res.photoUrl,
+                  fbUsername: res.firstName + res.lastName
+                }
+              }
+
+              this.social_login(body)
+            
+
+
+              
+
+            } else if (res.provider === GoogleLoginProvider.PROVIDER_ID) {
+
+              const body: SocialLoginRequest = { 
+                provider: GoogleLoginProvider.PROVIDER_ID,
+                googleAuthToken: res.idToken
+               }
+
+              this.social_login(body);
+
+            }
+
+
 
           }
         }
@@ -56,43 +75,58 @@ export class LoginComponent implements OnInit {
 
   login_form = this.formBuilder.group({
     username: ['', [Validators.required, Validators.email]],
-    password : ['', [Validators.required]]
+    password: ['', [Validators.required]]
   })
 
 
-  
-  public get username_ctrl()  {
+
+  private social_login(body: SocialLoginRequest) {
+    this.loginService.social_login_user(body)
+      .subscribe(res => {
+        localStorage.setItem('token', res.token);
+        this.router.navigate(['/home']);
+      }, error => {
+        const errors = Object.keys(error).map(item => error[item]);
+        this.errorList = errors;
+      });
+  }
+
+  public get username_ctrl() {
     return this.login_form.get('username')
   }
-  public get password_ctrl()  {
+  public get password_ctrl() {
     return this.login_form.get('password')
   }
 
-  login(){
+  login() {
     if (this.login_form.valid) {
-      
+
       this.loginService.login_user(this.login_form.value)
-      .subscribe( res => {
-        localStorage.setItem('token', res.token)
-        this.router.navigate(['/home'])
-      },
+        .subscribe(res => {
+          localStorage.setItem('token', res.token)
+          this.router.navigate(['/home'])
+        },
 
-      error => {
-        const errors = Object.keys(error).map(item => error[item]);
+          error => {
+            const errors = Object.keys(error).map(item => error[item]);
 
-        this.errorList = errors
-      }
-      
-      )
+            this.errorList = errors
+          }
+
+        )
 
     }
   }
 
-  signInWithGoogle(){
+  signInWithGoogle() {
 
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID)
-    
+
   }
-  
+
+  signInWithFacebook() {
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID)
+  }
+
 
 }

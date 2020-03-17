@@ -16,10 +16,21 @@ export class NavbarComponent implements OnInit {
   }
 
 
-  logout(){
+  logout() {
 
     localStorage.clear()
-    this.authService.signOut()
+
+
+    if (this.authService.authState.subscribe) {
+
+      res => {
+        if (res !== null) {
+          this.authService.signOut()
+
+        }
+      }
+
+    }
 
 
   }
