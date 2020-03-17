@@ -10,6 +10,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http';
 
 import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-login";
+import { HomeComponent } from './home/home.component';
+
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatIconModule } from "@angular/material/icon";
+import {MatCardModule} from '@angular/material/card';
+import {MatDividerModule} from '@angular/material/divider';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 
 let config = new AuthServiceConfig([
   {
@@ -33,7 +43,8 @@ export function provideConfig() {
     AppComponent,
     RegisterComponent,
     NavbarComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +52,14 @@ export function provideConfig() {
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    SocialLoginModule
+    SocialLoginModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatCardModule,
+    MatDividerModule,
+    FlexLayoutModule
   ],
   providers: [{
     provide: AuthServiceConfig,

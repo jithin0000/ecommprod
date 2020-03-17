@@ -26,21 +26,20 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
     const token = localStorage.getItem('token')
-    console.log(token)
 
     if (token === null) {
 
       this.authService.authState.subscribe(
         res => {
-          console.log(res)
           if (res !== null) {
+
 
             if (res.provider === FacebookLoginProvider.PROVIDER_ID) {
 
               const body: SocialLoginRequest ={
                 provider: FacebookLoginProvider.PROVIDER_ID,
                 facebookRequest:{
-                  facebookAccessToken : res.authToken,
+                  facebookAccessToken : res.id,
                   facebookUserId : res.id,
                   fbEmail: res.email,
                   fbProfilePicture: res.photoUrl,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'angularx-social-login';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +10,8 @@ import { AuthService } from 'angularx-social-login';
 export class NavbarComponent implements OnInit {
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -20,17 +22,17 @@ export class NavbarComponent implements OnInit {
 
     localStorage.clear()
 
-
-    if (this.authService.authState.subscribe) {
-
+    this.authService.authState.subscribe(
       res => {
-        if (res !== null) {
+        if(res !== null)
+        {
           this.authService.signOut()
-
         }
       }
+    )
 
-    }
+    this.router.navigate(['/'])
+
 
 
   }

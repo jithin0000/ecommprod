@@ -1,20 +1,13 @@
-<nav class="navbar navbar-expand-sm navbar-dark bg-primary">
-    <a class="navbar-brand" href="#">E-SHOP</a>
-    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu"
-        aria-expanded="false" aria-label="nab"></button>
-    <div class="collapse navbar-collapse" id="menu">
-        <ul class="navbar-nav ml-auto  mt-2 mt-lg-0">
-            <li class="nav-item active">
-                <a class="nav-link">Login </a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link">Register</a>
-            </li>
-            <li class="nav-item active">
-                <a (click)="logout()"  class="nav-link">logout</a>
-            </li>
-           
-        </ul>
-       
+<mat-toolbar color="primary">
+   <mat-toolbar-row>
+       <div class="nav-list">
+        <div class="nav-item">HOME</div>
+        <div class="right">
+            <div [routerLink]="['/']" routerLinkActive="active"   class="nav-item">LOGIN</div>
+            <div [routerLink]="['/register']" routerLinkActive="active"  class="nav-item">REGISTER</div>
+            <i  (click)="logout()" class="nav-item"><mat-icon>exit_to_app</mat-icon></i>
+        </div>
     </div>
-</nav>
+   </mat-toolbar-row>
+
+</mat-toolbar>

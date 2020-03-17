@@ -1,0 +1,23 @@
+.nav-list{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    .nav-item{
+        margin-left: 16px;
+        cursor: pointer;
+    }
+
+    .right{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        i{
+            padding-top: 8px;
+        }
+    }
+
+    
+}
