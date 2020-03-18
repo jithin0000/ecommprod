@@ -1,10 +1,30 @@
+<div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0px">
+
+
+</div>
+
+
+
 <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
 
-    <div fxFlex="100%">
-        
-        <div class="category-list" *ngIf="categories$ | async as categories" >
 
-            <div class="cat-item" *ngFor="let cat of categories; let i=index" >
+
+    <div fxFlex="100%">
+
+        <div class="category-list" *ngIf="categories$ | async as categories">
+
+            <div class="search-sec">
+                <mat-form-field class="search-control">
+                    <input #search (keyup)="searchName(search)" matInput placeholder="search">
+                </mat-form-field>
+                <div *ngIf="autoCompleteList$ | async as autoComps  " >
+                    <ul class="autolist" *ngIf="autoComps.length > 0" >
+                        <li *ngFor="let item of autoComps">{{ item.name }}</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="cat-item" *ngFor="let cat of categories; let i=index">
                 <div class="c-id">{{ i+1 }}</div>
                 <div class="c-name">{{ cat.name }}</div>
                 <div class="c-action">

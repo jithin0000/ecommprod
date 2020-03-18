@@ -25,3 +25,37 @@
 
     }
 }
+
+
+
+
+.search-sec{
+    position: relative;
+
+    .search-control{
+        width: 40%;
+    }
+
+    .autolist{
+        position: absolute;
+        top: 50%;
+        left: 0;
+        box-shadow: 1px 1px 4px 1px lightblue;
+        width: 37%;
+        z-index: 4;
+        background-color: white;
+
+        li{
+            list-style-type: none;
+            margin: 8px 8px;
+            font-weight: bold;
+            // text-transform: capitalize;
+            cursor: pointer;
+
+            &:hover{
+                border-bottom: 1px solid lightblue;
+            }
+        }
+    }
+
+}
