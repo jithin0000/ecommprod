@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserDetailService } from '../services/user-detail/user-detail.service';
+import { Observable } from 'rxjs';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-profile',
@@ -8,6 +10,8 @@ import { UserDetailService } from '../services/user-detail/user-detail.service';
 })
 export class ProfileComponent implements OnInit {
 
+  user$: Observable<User>
+
   constructor(
     private userDetailsService: UserDetailService
   ) { }
@@ -15,8 +19,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.userDetailsService.getUserDetails()
-    .subscribe(console.log)
+   this.user$ =  this.userDetailsService.getUserDetails()
   }
 
 }

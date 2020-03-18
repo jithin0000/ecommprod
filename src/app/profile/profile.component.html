@@ -1,1 +1,19 @@
-<p>profile works!</p>
+<div id="profile">
+    <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
+    
+       <div fxFlex="20%">
+        <div class="detail" *ngIf="user$ | async as user" >
+            <h3>{{ user.username }}</h3>
+            <img *ngIf="user.profilePicture" [src]="user.profilePicture" alt="" class="profile-pic">
+            <h6>{{ user.firstName }}</h6>
+        </div>
+       </div>
+
+       <div fxFlex="80%" fxFlexFill>
+           <div class="right-details">
+               <!-- <h3>Personal detail</h3> -->
+           </div>
+       </div>
+    
+    </div>
+</div>
