@@ -1,14 +1,11 @@
-<div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="0px">
+<div fxLayout="column" fxLayoutAlign="center start" fxLayoutGap="0px">
 
     <div fxLayout="row" fxLayoutAlign="center start" fxLayoutGap="0px">
-        <h3 class="title">register</h3>
+        <h3 class="title">sign up</h3>
     </div>
 
-    
 
-    
-
-    <div fxLayout="row" class="mt-2" fxLayoutAlign="center none" fxLayoutGap="0px">
+    <div fxLayout="row" class="mt-2" fxLayoutAlign="star none" fxLayoutGap="0px">
 
         <div fxFlex="100%">
             <form [formGroup]="register_form" (ngSubmit)="register()">
@@ -40,7 +37,6 @@
     
                     
                 </form>
-                <button class="mt-2"  [routerLink]="['/']"   mat-button>already have accound Login here</button>
         </div>
     </div>
 
