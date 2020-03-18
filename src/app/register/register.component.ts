@@ -43,9 +43,15 @@ export class RegisterComponent implements OnInit {
     if (this.register_form.valid) {
       
      
-      this.loginService.register_user(this.register_form.value)
+      const body: RegisterRequest = {
+        ...this.register_form.value,
+        roles: []
+
+      }
+
+      this.loginService.register_user(body)
       .subscribe( res => {
-        this.router.navigate(['/'])
+        alert("registered success fully ")
       },
 
       error => {

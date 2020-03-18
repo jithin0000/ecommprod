@@ -4,6 +4,7 @@ export interface RegisterRequest{
     firstName: string
     googleToken?: string,
     profilePicture?:string,
-    facebookToken?:string
+    facebookToken?:string,
+    roles:string[]
 
 }
