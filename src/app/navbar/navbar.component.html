@@ -1,10 +1,17 @@
 <mat-toolbar color="primary">
    <mat-toolbar-row>
        <div class="nav-list">
-        <div class="nav-item">HOME</div>
+        <div [routerLink]="['/home']" routerLinkActive="router-link-active"  class="nav-item">HOME</div>
+
         <div class="right">
-            <div [routerLink]="['/']" routerLinkActive="active"   class="nav-item">LOGIN</div>
+        <ng-container *ngIf="is_user_authenticated; else not_authenticated">
             <i  (click)="logout()" class="nav-item"><mat-icon>exit_to_app</mat-icon></i>
+            <i [routerLink]="['/profile']" routerLinkActive="router-link-active" class="nav-item"><mat-icon>account_circle</mat-icon></i>
+        </ng-container>
+        <ng-template #not_authenticated>
+            <div [routerLink]="['/']" routerLinkActive="active"   class="nav-item">LOGIN</div>
+        </ng-template>
+        
         </div>
     </div>
    </mat-toolbar-row>

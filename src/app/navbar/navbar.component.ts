@@ -9,12 +9,23 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
+  is_user_authenticated = false
+
   constructor(
     private authService: AuthService,
     private router: Router
   ) { }
 
   ngOnInit() {
+
+    const token = localStorage.getItem('token')
+
+    if (token !== null) {
+      this.is_user_authenticated = true
+    }else{
+      this.is_user_authenticated = false
+    }
+    
   }
 
 

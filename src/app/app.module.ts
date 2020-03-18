@@ -23,6 +23,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatListModule} from '@angular/material/list';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AuthComponent } from './auth/auth.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 let config = new AuthServiceConfig([
@@ -49,7 +50,8 @@ export function provideConfig() {
     NavbarComponent,
     LoginComponent,
     HomeComponent,
-    AuthComponent
+    AuthComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
