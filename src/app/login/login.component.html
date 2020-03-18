@@ -1,67 +1,55 @@
+<div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="0px">
 
-<div fxLayout="row" fxLayoutAlign="center none" fxLayoutGap="10px">
-    
-</div>
-<div id="login">
-
-    <div class="center">
+    <div fxLayout="row" fxLayoutAlign="center start" fxLayoutGap="0px">
         <h3 class="title">Login</h3>
     </div>
 
-    <mat-card>
-        <mat-card-content>
-        
-            <div class="social-login">
-                <div (click)="signInWithGoogle()"  class="google-sign-btn">
-                    <img class="g-img" width="20" height="20" src="/assets/icons/google.svg" alt="google">
-                    <span class="g-text">sign in with google</span>
-                </div>
+    <div fxLayout="row" fxLayoutAlign="center start" fxLayoutGap="0px">
 
-                <div (click)="signInWithFacebook()" class="ml-2 google-sign-btn">
-                    <img class="g-img" width="20" height="20" src="/assets/icons/facebook.svg" alt="google">
-                    <span>sigin in with facebook</span>
-                </div>
+        <div class="social-login">
+            <div (click)="signInWithGoogle()" class="sign-btn">
+                <img class="g-img" width="20" height="20" src="/assets/icons/google.svg" alt="google">
+                <span class="g-text">sign in with google</span>
+            </div>
 
-               </div>
+            <div (click)="signInWithFacebook()" class="ml-2 sign-btn bg-fb">
+                <!-- <img class="g-img" width="20" height="20" src="/assets/icons/facebook.svg" alt="google"> -->
+                <i class="fa fa-facebook-official" aria-hidden="true"></i>
+                <span>sigin in with facebook</span>
+            </div>
 
-               <mat-divider style="margin-top: 15px;" ></mat-divider>
+        </div>
+    </div>
 
-               <form [formGroup]="login_form" (ngSubmit)="login()"  >
-
-                <div class="form-group">
-                  <label for="username">Email</label>
-                  <input formControlName="username" type="text"
-                    class="form-control" name="username" id="username" 
-                    aria-describedby="helpId" placeholder="Enter Email">
-
-                    <div *ngIf="username_ctrl.touched && username_ctrl.invalid" class="alert alert-danger">
-                        username is required field
-                    </div>
-
-                </div>
-
-                <div class="form-group">
-                  <label for="password">password</label>
-                  <input type="password" formControlName="password" class="form-control" name="password" id="password" placeholder="Enter password">
-
-                  <div *ngIf="password_ctrl.touched && password_ctrl.invalid" class="alert alert-danger">
-                      password is required field
-                  </div>
-
-                </div>
-
-                <button type="submit" [disabled]="login_form.invalid" class="btn btn-primary">Login</button>
-
-            </form>
-               
-            <a [routerLink]="['/register']"  class="btn btn-link"> Not have an account register here</a>
-
-
-
-        </mat-card-content>
-    </mat-card>
     
 
+    <div fxLayout="row" class="mt-2" fxLayoutAlign="center none" fxLayoutGap="0px">
+
+        <div fxFlex="100%">
+            <form [formGroup]="login_form" (ngSubmit)="login()">
+
+                        <mat-form-field  class="form-control-item">
+                            <mat-label>Username</mat-label>
+                            <input  type="email" matInput formControlName="username" placeholder="Email">
+                            <mat-error *ngIf="username_ctrl.touched && username_ctrl.invalid">
+                                username is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field >
+                        <mat-form-field class="form-control-item">
+                            <mat-label>Password</mat-label>
+                            <input type="password" matInput formControlName="password" placeholder="Password">
+                            <mat-error *ngIf="password_ctrl.touched && password_ctrl.invalid">
+                                password is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+    
+                    <button type="submit" [disabled]="login_form.invalid" color="primary" mat-raised-button>Login</button>
+                    <br>
+    
+                    
+                </form>
+                <button class="mt-2"  [routerLink]="['/register']"   mat-button>already have accound register here</button>
+        </div>
+    </div>
 
 </div>
-

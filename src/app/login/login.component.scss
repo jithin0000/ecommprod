@@ -1,18 +1,38 @@
 .social-login{
     display: flex;
-    justify-content: center;
-    .google-sign-btn{
+    justify-content: space-around;
+    .sign-btn{
         display: flex;
         align-items: center;
-        justify-content: space-around;
-        padding: 8px;
+        justify-content: space-between;
+        padding: 16px;
         border: 0.5px solid rgb(218, 215, 215);
-        width: 18%;
-        border-radius: 8px;
+        // width: 18%;
+        margin-right: 8px;
+        border-radius: 5px;
         cursor: pointer;
+
+        span{
+            margin: 0px 8px;
+        }
 
         &:hover{
             box-shadow: 2px 2px 4px 2px lightgray;
         }
+    }
+
+    .bg-fb{
+        background-color: #1976D2;
+        color: white;
+
+    }
+
+
+}
+
+.or{
+    width: 100%;
+    h6{
+        // font-weight: bold;
     }
 }
