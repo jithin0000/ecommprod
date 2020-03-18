@@ -29,7 +29,7 @@
             <form [formGroup]="login_form" (ngSubmit)="login()">
 
                         <mat-form-field  class="form-control-item">
-                            <mat-label>Username</mat-label>
+                            <mat-label>Email</mat-label>
                             <input  type="email" matInput formControlName="username" placeholder="Email">
                             <mat-error *ngIf="username_ctrl.touched && username_ctrl.invalid">
                                 username is <strong>required</strong>
@@ -48,7 +48,8 @@
     
                     
                 </form>
-                <button class="mt-2"  [routerLink]="['/register']"   mat-button>already have accound register here</button>
+                <button class="mt-2"  [routerLink]="['/register']"   mat-button>Not have accound 
+                    register here</button>
         </div>
     </div>
 

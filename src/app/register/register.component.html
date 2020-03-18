@@ -1,68 +1,47 @@
-<div class="container">
-    <div class="row my-5">
-        <div class="text-center col-lg-12">
-            <h3>Register here</h3>
+<div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="0px">
+
+    <div fxLayout="row" fxLayoutAlign="center start" fxLayoutGap="0px">
+        <h3 class="title">register</h3>
+    </div>
+
+    
+
+    
+
+    <div fxLayout="row" class="mt-2" fxLayoutAlign="center none" fxLayoutGap="0px">
+
+        <div fxFlex="100%">
+            <form [formGroup]="register_form" (ngSubmit)="register()">
+
+                        <mat-form-field  class="form-control-item">
+                            <mat-label>Email</mat-label>
+                            <input  type="email" matInput formControlName="username" placeholder="Email">
+                            <mat-error *ngIf="username_ctrl.touched && username_ctrl.invalid">
+                                username is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field >
+                        <mat-form-field  class="form-control-item">
+                            <mat-label>Username</mat-label>
+                            <input  type="text" matInput formControlName="firstName" placeholder="username">
+                            <mat-error *ngIf="firstName_ctrl.touched && firstName_ctrl.invalid">
+                                username is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field >
+                        <mat-form-field class="form-control-item">
+                            <mat-label>Password</mat-label>
+                            <input type="password" matInput formControlName="password" placeholder="Password">
+                            <mat-error *ngIf="password_ctrl.touched && password_ctrl.invalid">
+                                password is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+    
+                    <button type="submit" [disabled]="register_form.invalid" color="primary" mat-raised-button>register</button>
+                    <br>
+    
+                    
+                </form>
+                <button class="mt-2"  [routerLink]="['/']"   mat-button>already have accound Login here</button>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="card">
-
-                <div *ngIf="errorList.length > 0" class="card-header">
-                    <div class="alert alert-danger">
-                        <p *ngFor="let item of errorList">{{ item }}</p>
-                    </div>
-                </div>
-
-                <div class="card-body">
-
-                    <form [formGroup]="register_form" (ngSubmit)="register()">
-
-                        <div class="form-group">
-                            <label for="username">Email</label>
-                            <input formControlName="username" type="text" class="form-control" name="username"
-                                id="username" aria-describedby="helpId" placeholder="Enter Email">
-
-                            <div *ngIf="username_ctrl.touched && username_ctrl.invalid" class="alert alert-danger">
-                                username is required field
-                            </div>
-
-                        </div>
-
-                        <div class="form-group">
-                            <label for="firstName">Username</label>
-                            <input formControlName="firstName" type="text" class="form-control" name="firstName"
-                                id="firstName" aria-describedby="helpId" placeholder="Enter Username">
-
-                            <div *ngIf="firstName_ctrl.touched && firstName_ctrl.invalid" class="alert alert-danger">
-                                username is required field
-                            </div>
-
-                        </div>
-
-
-
-                        <div class="form-group">
-                            <label for="password">password</label>
-                            <input type="password" formControlName="password" class="form-control" name="password"
-                                id="password" placeholder="Enter password">
-
-                            <div *ngIf="password_ctrl.touched && password_ctrl.invalid" class="alert alert-danger">
-                                password is required field
-                            </div>
-
-                        </div>
-
-                        <button type="submit" [disabled]="register_form.invalid" class="btn btn-primary">Register</button>
-
-                    </form>
-
-                    <a [routerLink]="['/']" class="btn btn-link"> Already have
-                        an account Login here</a>
-
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
