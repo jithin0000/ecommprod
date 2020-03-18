@@ -24,6 +24,9 @@ import {MatListModule} from '@angular/material/list';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AuthComponent } from './auth/auth.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AdminComponent } from './admin/admin.component';
+import { CategoryComponent } from './category/category.component';
+import { CategoryListComponent } from './category/category-list/category-list.component';
 
 
 let config = new AuthServiceConfig([
@@ -51,7 +54,10 @@ export function provideConfig() {
     LoginComponent,
     HomeComponent,
     AuthComponent,
-    ProfileComponent
+    ProfileComponent,
+    AdminComponent,
+    CategoryComponent,
+    CategoryListComponent
   ],
   imports: [
     BrowserModule,

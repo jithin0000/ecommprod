@@ -1,0 +1,22 @@
+<div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
+
+    <div fxFlex="100%">
+        
+        <div class="category-list" *ngIf="categories$ | async as categories" >
+
+            <div class="cat-item" *ngFor="let cat of categories; let i=index" >
+                <div class="c-id">{{ i+1 }}</div>
+                <div class="c-name">{{ cat.name }}</div>
+                <div class="c-action">
+                    <button color="primary" mat-flat-button>edit</button>
+                    <button color="accent" mat-flat-button>update</button>
+                    <button color="warn" mat-flat-button>delete</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>

@@ -1,0 +1,27 @@
+.category-list{
+    background-color: white;
+    padding: 2%;
+    .cat-item{
+        display: flex;
+        align-items: center;
+        margin-top: 16px;
+
+        .c-id{
+            flex: 0.5;
+        }
+        .c-name{
+            flex: 2;
+        }
+        .c-action{
+            flex:3;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            button{
+                margin-left: 16px;
+            }
+        }
+
+
+    }
+}

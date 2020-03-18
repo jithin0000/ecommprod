@@ -20,6 +20,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
 
    this.user$ =  this.userDetailsService.getUserDetails()
+   this.user$.subscribe(console.log)
   }
 
 }
