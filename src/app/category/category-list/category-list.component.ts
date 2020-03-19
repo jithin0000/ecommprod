@@ -73,6 +73,8 @@ export class CategoryListComponent implements OnInit, OnDestroy {
         data$, 
         this.filteredCategories$.pipe(mergeAll())
         ).pipe(toArray())
+
+      this.category_form.reset()
       
     }
   }

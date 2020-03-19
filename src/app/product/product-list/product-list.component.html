@@ -1,0 +1,30 @@
+
+<div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
+    <div fxFlex="40%">
+        <mat-form-field class="form-control-item">
+            <input #search (keyup)="searchProductByName(search)"
+             matInput placeholder="search" >
+        </mat-form-field>
+        <ul *ngIf="autoProductList$ | async as autoProductList" class="auto-comp-list">
+            <li *ngFor="let product of autoProductList" >{{ product.name }}</li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="product-list">
+    <ul *ngIf="productList$ | async as products" >
+
+        <li *ngFor="let pdt of products">
+            <h3>{{ pdt.name }}</h3>
+            <p>{{ pdt.description }}</p>
+            <p>{{ pdt.price }}</p>
+
+            <div class="actions">
+                <button color="accent" mat-button>update</button>
+                <button color="warn" mat-button>delete</button>
+            </div>
+        </li>
+
+    </ul>
+</div>
