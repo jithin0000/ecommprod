@@ -5,6 +5,7 @@ import { AuthComponent } from './auth/auth.component'
 import { ProfileComponent } from './profile/profile.component';
 import { AdminComponent } from './admin/admin.component';
 import { CategoryComponent } from './category/category.component';
+import { CategoryDetailComponent } from './category/category-detail/category-detail.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: "profile", component: ProfileComponent},
   { path: "admin", component: AdminComponent},
   { path: "category", component: CategoryComponent},
+  { path: "category/:id", component: CategoryDetailComponent},
 ];
 
 @NgModule({

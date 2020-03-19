@@ -1,13 +1,20 @@
 <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0px">
 
+    <div fxFlex="100%">
+       <form [formGroup]="category_form" (ngSubmit)="addCategory()" >
+        <mat-form-field>
+            <input matInput formControlName="name" placeholder="add new Category" >
+            <mat-error *ngIf="name_ctrl.touched && name_ctrl.invalid" >
+                name required field
+            </mat-error>
+        </mat-form-field>
+
+       </form>
+    </div>
 
 </div>
 
-
-
 <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
-
-
 
     <div fxFlex="100%">
 
@@ -24,13 +31,14 @@
                 </div>
             </div>
 
-            <div class="cat-item" *ngFor="let cat of categories; let i=index">
-                <div class="c-id">{{ i+1 }}</div>
-                <div class="c-name">{{ cat.name }}</div>
-                <div class="c-action">
-                    <button color="primary" mat-flat-button>edit</button>
-                    <button color="accent" mat-flat-button>update</button>
-                    <button color="warn" mat-flat-button>delete</button>
+            <div class="cat-table" *ngIf="filteredCategories$ | async as filteredCategories" >
+                <div class="cat-item" *ngFor="let cat of filteredCategories; let i=index">
+                    <div class="c-id">{{ i+1 }}</div>
+                    <div class="c-name">{{ cat.name }}</div>
+                    <div class="c-action">
+                        <button color="accent" mat-flat-button>update</button>
+                        <button (click)="delete(cat.id)" color="warn" mat-flat-button>delete</button>
+                    </div>
                 </div>
             </div>
 

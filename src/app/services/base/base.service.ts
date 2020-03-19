@@ -49,6 +49,21 @@ export class BaseService<T> {
      )
    }
 
+   create(body: any){
+     return this.http.post<T>(this.url, body,{
+       headers : this.headers
+     }).pipe(
+       catchError(this.handlePromise)
+     )
+   }
+
+   delete(id: string){
+     return this.http.delete(this.url + "/delete/"+id, {
+       headers: this.headers
+     }).pipe(
+       catchError(this.handlePromise)
+     )
+   }
 
    protected handlePromise(error: HttpErrorResponse) {
 

@@ -27,6 +27,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { AdminComponent } from './admin/admin.component';
 import { CategoryComponent } from './category/category.component';
 import { CategoryListComponent } from './category/category-list/category-list.component';
+import { CategoryDetailComponent } from './category/category-detail/category-detail.component';
 
 
 let config = new AuthServiceConfig([
@@ -57,7 +58,8 @@ export function provideConfig() {
     ProfileComponent,
     AdminComponent,
     CategoryComponent,
-    CategoryListComponent
+    CategoryListComponent,
+    CategoryDetailComponent
   ],
   imports: [
     BrowserModule,
