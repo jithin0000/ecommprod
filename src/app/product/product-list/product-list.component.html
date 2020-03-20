@@ -13,6 +13,11 @@
 
 
 <div class="product-list">
+
+  <div *ngIf="deletedMessage" class="alert alert-danger">
+    {{ deletedMessage }}
+  </div>
+
     <ul *ngIf="productList$ | async as products" >
 
         <li *ngFor="let pdt of products">
@@ -22,7 +27,7 @@
 
             <div class="actions">
                 <button color="accent" mat-button>update</button>
-                <button color="warn" mat-button>delete</button>
+                <button (click)="deleteProduct(pdt.id)" color="warn" mat-button>delete</button>
             </div>
         </li>
 

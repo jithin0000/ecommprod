@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product/product.service';
 import { Observable, Subject } from 'rxjs';
 import { Product } from 'src/app/models/product.model';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import {debounceTime, distinctUntilChanged, filter, mergeAll, switchMap, toArray} from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-list',
@@ -11,10 +11,11 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 })
 export class ProductListComponent implements OnInit {
 
-  productList$: Observable<Product[]>
-  searchTerm$ = new Subject<String>()
+  productList$: Observable<Product[]>;
+  searchTerm$ = new Subject<string>();
 
-  autoProductList$ :  Observable<Product[]>
+  autoProductList$: Observable<Product[]>;
+  deletedMessage = '';
 
   constructor(
     private productService: ProductService
@@ -22,21 +23,38 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
 
-   this.productList$ =  this.productService.getAll()
-   this.productList$.subscribe()
+   this.productList$ =  this.productService.getAll();
+   this.productList$.subscribe();
 
    this.autoProductList$ = this.searchTerm$.pipe(
      debounceTime(250),
      distinctUntilChanged(),
      switchMap( v => this.productService.filterByName(v.toString()))
-   )
-   
-   this.autoProductList$.subscribe()
+   );
+
+   this.autoProductList$.subscribe();
   }
 
-  searchProductByName(element: HTMLInputElement){
-    this.searchTerm$.next(element.value)
+  searchProductByName(element: HTMLInputElement) {
+    this.searchTerm$.next(element.value);
 
   }
 
+  deleteProduct(id: string) {
+
+    this.productService.delete(id).subscribe(res => {
+
+      this.deletedMessage = res.message;
+
+      this.productList$ =  this.productList$.pipe(
+        mergeAll(),
+        filter(item => item.id !== id),
+        toArray()
+      );
+
+
+    });
+
+  }
 }
+

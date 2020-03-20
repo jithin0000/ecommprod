@@ -15,7 +15,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     text-transform: uppercase;
     font-weight: bold;
     font-size: 2em;
-    
+
 }
 
 .form-item{
@@ -33,4 +33,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .mt-2{
     margin-top: 2%;
+}
+
+.alert{
+  padding: 8px;
+}
+
+.alert-danger{
+  background-color: #f0c8c7;
+  color: red;
 }

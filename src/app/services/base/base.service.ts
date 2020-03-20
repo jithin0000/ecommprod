@@ -3,84 +3,84 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { environment } from 'src/environments/environment';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import {DeleteMessage} from '../../models/delete.message';
 
 export class BaseService<T> {
 
-   private url: string = ""
-  headers: HttpHeaders 
+   private url = '';
+  headers: HttpHeaders;
 
-  constructor(private http: HttpClient,private endpoint: string) {
+  constructor(private http: HttpClient, private endpoint: string) {
 
-    this.url = environment.url+endpoint
+    this.url = environment.url + endpoint;
 
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem('token');
 
     this.headers = new HttpHeaders({
-      "Authorization" : token
-    })
+      Authorization : token
+    });
 
    }
 
 
-   
+
    protected get httpClient()  {
-     return this.http
+     return this.http;
    }
 
-   protected get urls(){
-     return this.url
+   protected get urls() {
+     return this.url;
    }
 
-   
-   
 
 
-   getAll(){
-     return this.http.get<T[]>(this.url)
+
+
+   getAll() {
+     return this.http.get<T[]>(this.url);
    }
 
-   getById(id: string){
+   getById(id: string) {
 
-     return this.http.get<T>(this.url+"/"+id, {
+     return this.http.get<T>(this.url + '/' + id, {
        headers: this.headers
      })
      .pipe(
        catchError(this.handlePromise)
-     )
+     );
    }
 
-   create(body: any){
-     return this.http.post<T>(this.url, body,{
+   create(body: any) {
+     return this.http.post<T>(this.url, body, {
        headers : this.headers
      }).pipe(
        catchError(this.handlePromise)
-     )
+     );
    }
 
-   delete(id: string){
-     return this.http.delete(this.url + "/delete/"+id, {
+   delete(id: string) {
+     return this.http.delete<DeleteMessage>(this.url + '/delete/' + id, {
        headers: this.headers
      }).pipe(
        catchError(this.handlePromise)
-     )
+     );
    }
 
    protected handlePromise(error: HttpErrorResponse) {
 
-    if(error.error instanceof ErrorEvent)
-    {
-      console.log('error occured',error.error.message)
+    if (error.error instanceof ErrorEvent) {
+      console.log('error occured', error.error.message);
 
-    }else{
-      console.error(`Backend error ${error.status}`, error.error)
+    } else {
+      console.error(`Backend error ${error.status}`, error.error);
       return throwError(
         error.error
-      )
+      );
     }
 
     return throwError(
-      "something bad happened try again later, "
-    )
+      'something bad happened try again later, '
+    );
 
   }
 
